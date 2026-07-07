@@ -4,7 +4,7 @@ const router = express.Router();
 const Listing = require("../models/listing.js");
 const Review = require("../models/review.js");
 
-const WrapAsync = require("../utils/wrapAsync.js");
+const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 
 const { validateReview, isloggedin,isReviewAuthor } = require("../middleware.js");
