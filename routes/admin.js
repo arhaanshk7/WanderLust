@@ -5,7 +5,7 @@ const { isloggedin, isAdmin } = require("../middleware");
 
 const adminController = require("../controllers/admin.js");
 
-const wrapAsync = require("../utils/wrapAsync.js");
+const wrapAsync = require("../utils/tempt.js");
 
 
 // Admin dashboard
