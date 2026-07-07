@@ -4,7 +4,7 @@ const router = express.Router();
 
 const {isloggedin} = require("../middleware");
 
-const wrapAsync = require("../utils/tempt.js");
+const wrapAsync = require("../utils/wrapAsync.js");
 
 
 const bookingController =
