@@ -18,7 +18,7 @@ router.post(
     "/:id/reviews",
     isloggedin,
     validateReview,
-    WrapAsync(reviewController.createReview)
+    wrapAsync(reviewController.createReview)
 );
 
 
@@ -27,7 +27,7 @@ router.delete(
     "/:id/reviews/:reviewId",
     isloggedin,
     isReviewAuthor,
-    WrapAsync(reviewController.deleteReview)
+    wrapAsync(reviewController.deleteReview)
 );
 
 module.exports = router;

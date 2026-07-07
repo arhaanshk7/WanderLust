@@ -42,7 +42,7 @@ router.post(
   isHost,
   upload.single("image"),
   validateListing,
-  WrapAsync(listingController.createListing)
+  wrapAsync(listingController.createListing)
 );
 
 
