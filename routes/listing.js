@@ -20,7 +20,7 @@ const User = require("../models/user.js");
 
 
 // ALL LISTINGS
-router.get("/", WrapAsync(listingController.index));
+router.get("/", wrapAsync(listingController.index));
 
 
 // NEW FORM
@@ -32,7 +32,7 @@ router.get("/search",listingController.search);
 
 
 // SHOW
-router.get("/:id", WrapAsync(listingController.show));
+router.get("/:id", wrapAsync(listingController.show));
 
 
 // CREATE
@@ -54,7 +54,7 @@ router.get(
   "/:id/edit",
   isloggedin,
   isowner,
-  WrapAsync(listingController.renderEditForm)
+  wrapAsync(listingController.renderEditForm)
 );
 
 
@@ -65,7 +65,7 @@ router.put(
   isowner,
   upload.single("image"),
   validateListing,
-  WrapAsync(listingController.updateListing)
+  wrapAsync(listingController.updateListing)
 );
 
 
@@ -74,7 +74,7 @@ router.delete(
   "/:id",
   isloggedin,
   isowner,
-  WrapAsync(listingController.deleteListing)
+  wrapAsync(listingController.deleteListing)
 );
 
 module.exports = router;
