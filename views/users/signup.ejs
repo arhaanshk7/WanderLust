@@ -1,0 +1,72 @@
+<% layout('layout/boilerplate') %>
+
+<div class="signup-container">
+
+    <div class="signup-card">
+
+        <h2>Welcome to WanderLust</h2>
+        <p class="subtitle">Create an account to start your journey</p>
+
+
+        <form action="/signup" method="POST" novalidate class="needs-validation">
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    id="username"
+                    name="username"
+                    placeholder="Enter username"
+                    required>
+                    <div class="invalid-feedback">
+                      Please Enter a username
+                    </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email address"
+                    required>
+                    <div class="invalid-feedback">
+                      Please Enter your email
+                    </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create password"
+                    autocomplete="new-password"
+                    required>
+                    <div class="invalid-feedback">
+                      Please create a password
+                    </div>
+            </div>
+
+
+            <button class="signup-btn">
+                Sign up
+            </button>
+
+        </form>
+
+
+        <p class="login-text">
+            Already have an account?
+            <a href="/login">Log in</a>
+        </p>
+
+    </div>
+
+</div>
+
+

@@ -1,0 +1,98 @@
+<% layout("layout/boilerplate") %>
+
+
+<h2>
+Book <%= listing.title %>
+</h2>
+
+
+<p>
+₹ <%= listing.price %> per night
+</p>
+
+
+<form method="POST"
+action="/bookings/<%= listing._id %>/book">
+
+
+<label>
+Check In
+</label>
+
+<input
+id="checkIn"
+type="text"
+name="checkIn"
+required>
+
+
+
+<label>
+Check Out
+</label>
+
+<input
+id="checkOut"
+type="text"
+name="checkOut"
+required>
+
+
+<label>
+Guests
+</label>
+
+<input 
+type="number"
+name="guests"
+min="1"
+required>
+
+
+
+<button class="btn btn-danger">
+Confirm Booking
+</button>
+
+
+</form>
+
+
+
+<script>
+
+const listingId = "<%= listing._id %>";
+
+
+fetch(`/bookings/${listingId}/booked-dates`)
+.then(res => res.json())
+.then(bookedDates => {
+
+    initCalendar(bookedDates);
+
+});
+
+
+function initCalendar(bookedDates){
+
+    flatpickr("#checkIn", {
+
+        dateFormat: "Y-m-d",
+
+        disable: bookedDates
+
+    });
+
+
+    flatpickr("#checkOut", {
+
+        dateFormat: "Y-m-d",
+
+        disable: bookedDates
+
+    });
+
+}
+
+
+</script>

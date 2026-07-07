@@ -1,0 +1,106 @@
+<% layout('layout/boilerplate') %>
+
+<style>
+  body {
+    background: #f7f7f7;
+    font-family: Arial, sans-serif;
+  }
+
+  .status-container {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .status-card {
+    background: white;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .status-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #222;
+  }
+
+  .badge-status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .pending {
+    background: #fff3cd;
+    color: #856404;
+  }
+
+  .approved {
+    background: #d1e7dd;
+    color: #0f5132;
+  }
+
+  .rejected {
+    background: #f8d7da;
+    color: #842029;
+  }
+
+  .info-text {
+    margin-top: 15px;
+    font-size: 15px;
+    color: #555;
+  }
+</style>
+
+<div class="status-container">
+
+  <div class="status-card">
+
+    <div class="status-title">🏠 Host Request Status</div>
+
+    <% if(!request){ %>
+
+        <p class="info-text">You have not applied yet.</p>
+
+        <a href="/become-host" class="btn btn-outline-danger btn-sm mt-2">
+          Become a Host
+        </a>
+
+    <% } else { %>
+
+        <div class="badge-status <%= request.status %>">
+          <%= request.status.toUpperCase() %>
+        </div>
+
+        <% if(request.status === "pending"){ %>
+            <p class="info-text">⏳ Your request is under review</p>
+        <% } %>
+
+        <% if(request.status === "approved"){ %>
+            <p class="info-text">🎉 Congratulations! You are now a Host</p>
+            <a href="/listings/new" class="btn btn-danger btn-sm mt-2">
+              Create Listing
+            </a>
+        <% } %>
+
+        <% if(request.status === "rejected"){ %>
+            <p class="info-text">❌ Your request was rejected</p>
+            <a href="/become-host" class="btn btn-outline-danger btn-sm mt-2">
+              Apply Again
+            </a>
+        <% } %>
+
+    <% } %>
+
+  </div>
+
+</div>

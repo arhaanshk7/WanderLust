@@ -1,0 +1,166 @@
+<style>
+  .search-form {
+    width: 500px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.search-form:hover {
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+
+.search-input {
+    border: none;
+    border-radius: 50px;
+    padding-left: 18px;
+    font-size: 14px;
+    height: 34px;              
+}
+
+
+.search-input:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.search-btn {
+    background-color: #ff385c;
+    color: white;
+    border-radius: 50px;
+    padding: 6px 22px;         
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+}
+
+
+.search-btn:hover {
+    background-color: #e31c5f;
+    color: white;
+    transform: scale(1.03);
+}
+</style>
+
+
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top shadow-sm">
+
+  <div class="container-fluid">
+
+    <!-- BRAND -->
+    <a class="navbar-brand fw-bold text-danger" href="/listings">
+      <i class="fa-regular fa-compass"></i> WanderLust
+    </a>
+
+    <!-- TOGGLE -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- LEFT SIDE -->
+      <div class="navbar-nav">
+
+        <a class="nav-link" href="/listings">All Listings</a>
+
+        <% if(request && request.status === "approved"){ %>
+          <a class="nav-link" href="/listings/new">Create Listing</a>
+        <% } %>
+
+      </div>
+
+      <!-- SEARCH BAR -->
+      <% if (typeof hideSearch === "undefined" || !hideSearch) { %>
+
+        <div class="navbar-nav ms-auto">
+
+          <form class="d-flex search-form" role="search" action="/listings/search" method="GET">
+
+            <input 
+              class="form-control search-input"
+              type="search"
+              name="q"
+              placeholder="Search destinations..."
+              aria-label="Search"
+            />
+
+            <button class="btn search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              Search
+            </button>
+
+          </form>
+
+        </div>
+
+      <% } %>
+
+      <!-- RIGHT SIDE -->
+      <div class="navbar-nav ms-auto align-items-center gap-2">
+
+        <% if(!currUser){ %>
+
+          <!-- NOT LOGGED IN -->
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+
+        <% } else { %>
+
+          <!-- ADMIN -->
+          <% if(currUser.role === "admin"){ %>
+
+            <a href="/admin/host-requests" class="btn btn-danger btn-sm fw-bold">
+              🛠 Admin Dashboard
+            </a>
+
+          <% } else { %>
+
+            <!-- USER / HOST COMMON -->
+            <a href="/bookings/myBookings" class="btn btn-outline-primary btn-sm">
+              My Bookings
+            </a>
+
+            <a href="/my-host-status" class="btn btn-outline-secondary btn-sm">
+              Host Status
+            </a>
+
+            <!-- HOST ONLY -->
+            <% if(currUser.role === "host"){ %>
+
+              <a href="/bookings/host/bookings" class="btn btn-outline-success btn-sm">
+                Host Bookings
+              </a>
+
+            <% } %>
+
+            <!-- USER ONLY -->
+            <% if(currUser.role === "user"){ %>
+
+              <% if(!request || request.status === "rejected"){ %>
+                <a href="/become-host" class="btn btn-outline-danger btn-sm">
+                  Become Host
+                </a>
+              <% } %>
+
+            <% } %>
+
+          <% } %>
+
+          <!-- LOGOUT (ALL LOGGED IN USERS) -->
+          <a href="/logout" class="btn btn-dark btn-sm">
+            Logout
+          </a>
+
+        <% } %>
+
+      </div>
+
+    </div>
+  </div>
+
+</nav>

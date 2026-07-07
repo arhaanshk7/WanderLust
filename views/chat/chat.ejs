@@ -1,0 +1,174 @@
+<% layout("layout/boilerplate") %>
+
+
+<div class="container mt-4">
+
+
+<h2>
+    Chat
+</h2>
+
+
+<div 
+id="chatBox"
+class="border rounded p-3"
+style="height:400px; overflow-y:auto;"
+>
+
+
+<!-- OLD MESSAGES -->
+
+<% messages.forEach(message => { %>
+
+
+<div class="mb-2">
+
+<strong>
+<%= message.sender.username %>
+</strong>
+
+:
+
+<%= message.text %>
+
+
+</div>
+
+
+<% }) %>
+
+
+</div>
+
+
+
+<br>
+
+
+<input 
+id="msgInput"
+class="form-control"
+placeholder="Type message..."
+>
+
+
+<br>
+
+
+<button 
+onclick="sendMessage()"
+class="btn btn-primary">
+
+Send
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+
+<script>
+
+
+const socket = io();
+
+
+
+const conversationId = "<%= conversation._id %>";
+
+
+
+// join room
+
+socket.emit(
+    "join-room",
+    conversationId
+);
+
+
+
+
+// receive real-time message
+
+
+socket.on("receive-message",(data)=>{
+
+
+    const div = document.createElement("div");
+
+
+    div.innerHTML = `
+
+    <strong>
+    ${data.senderName}
+    </strong>
+
+    :
+    ${data.text}
+
+    `;
+
+
+    document
+    .getElementById("chatBox")
+    .appendChild(div);
+
+
+
+});
+
+
+
+
+
+function sendMessage(){
+
+
+
+    const input = document.getElementById("msgInput");
+
+
+    const text = input.value;
+
+
+
+    if(text.trim()==="")
+    return;
+
+
+
+    socket.emit("send-message",{
+
+
+        conversationId,
+
+
+        text,
+
+
+        senderId:"<%= user._id %>",
+
+
+        senderName:"<%= user.username %>"
+
+
+    });
+
+
+
+    input.value="";
+
+
+}
+
+
+
+
+</script>

@@ -1,0 +1,134 @@
+<% layout('layout/boilerplate') %>
+
+<div class="edit-container">
+
+    <div class="edit-card">
+
+        <h2 class="edit-heading">Edit Listing</h2>
+
+        <form 
+            method="post" 
+            action="/listings/<%= listing._id %>?_method=PUT"
+            enctype="multipart/form-data"
+            class="needs-validation"
+            novalidate
+        >
+
+            <!-- Title -->
+            <div class="form-group">
+                <label>Title</label>
+
+                <input
+                    type="text"
+                    name="listing[title]"
+                    value="<%= listing.title %>"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+
+            <!-- Description -->
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                    name="listing[description]"
+                    rows="4"
+                    class="form-control"
+                    required
+                ><%= listing.description %></textarea>
+
+            </div>
+
+
+            <!-- Current Image -->
+            <div class="form-group">
+
+                <label>Current Image</label>
+
+                <br>
+
+                <img
+                    src="<%= listing.image.url %>"
+                    alt="listing image"
+                    width="200"
+                    class="rounded"
+                >
+
+            </div>
+
+
+            <!-- Change Image -->
+            <div class="form-group">
+
+                <label>Change Image (optional)</label>
+
+                <input
+                    type="file"
+                    name="image"
+                    class="form-control"
+                >
+
+            </div>
+
+
+            <!-- Price -->
+            <div class="form-group">
+
+                <label>Price</label>
+
+                <input
+                    type="number"
+                    name="listing[price]"
+                    value="<%= listing.price %>"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Location -->
+            <div class="form-group">
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    name="listing[location]"
+                    value="<%= listing.location %>"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Country -->
+            <div class="form-group">
+
+                <label>Country</label>
+
+                <input
+                    type="text"
+                    name="listing[country]"
+                    value="<%= listing.country %>"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <button class="update-btn">
+                Update Listing
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,37 @@
+<% layout('layout/boilerplate') %>
+
+<div class="host-container">
+
+  <div class="host-card">
+
+    <div class="host-title">Become a Host 🏠</div>
+
+    <form method="post" action="/become-host">
+
+      <input name="fullName" placeholder="Full Name" required>
+
+      <input name="phone" placeholder="Phone Number" required>
+
+      <input name="address" placeholder="Full Address" required>
+
+      <input name="city" placeholder="City" required>
+
+      <input name="country" placeholder="Country" required>
+
+      <select name="apartmentType" required>
+        <option value="" disabled selected hidden>Select Listing Type</option>
+        <option>Apartment</option>
+        <option>Villa</option>
+        <option>House</option>
+        <option>Room</option>
+      </select>
+
+      <button class="host-btn" type="submit">
+        Submit Request
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,64 @@
+<h2 class="mb-4 text-center fw-bold text-dark">
+    🏠 Host Requests
+</h2>
+
+<div class="container">
+
+<% if(requests.length === 0){ %>
+    <div class="alert alert-info text-center">
+        No pending host requests 🚀
+    </div>
+<% } %>
+
+<div class="row">
+
+<% requests.forEach(req => { %>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+
+        <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body">
+
+                <h5 class="fw-bold text-primary">
+                    <%= req.fullName %>
+                </h5>
+
+                <p class="mb-1">
+                    📞 <%= req.phone %>
+                </p>
+
+                <p class="mb-1">
+                    📍 <%= req.city %>
+                </p>
+
+                <p class="mb-3">
+                    🏡 <%= req.apartmentType %>
+                </p>
+
+                <div class="d-flex justify-content-between">
+
+                    <form method="post" action="/admin/approve/<%= req._id %>">
+                        <button class="btn btn-success btn-sm">
+                            ✅ Approve
+                        </button>
+                    </form>
+
+                    <form method="post" action="/admin/reject/<%= req._id %>">
+                        <button class="btn btn-danger btn-sm">
+                            ❌ Reject
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<% }) %>
+
+</div>
+</div>

@@ -1,0 +1,71 @@
+<% layout('layout/boilerplate') %>
+
+<div class="container py-4">
+
+  <h2 class="mb-4 fw-bold text-danger">
+    🏠 Host Bookings
+  </h2>
+
+  <% if(bookings.length === 0){ %>
+
+    <div class="alert alert-info">
+      No bookings yet for your listings.
+    </div>
+
+  <% } %>
+
+  <div class="row">
+
+    <% bookings.forEach(b => { %>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+
+        <div class="card shadow-sm border-0 h-100">
+
+          <!-- IMAGE -->
+          <img 
+            src="<%= b.listing.image.url %>" 
+            class="card-img-top"
+            style="height: 180px; object-fit: cover;"
+          >
+
+          <!-- BODY -->
+          <div class="card-body">
+
+            <h5 class="fw-bold text-dark">
+              <%= b.listing.title %>
+            </h5>
+
+            <p class="mb-1 text-muted">
+              📍 <%= b.listing.location %>
+            </p>
+
+            <hr>
+
+            <p class="mb-1">
+              👤 <strong>Guest:</strong> <%= b.user.username %>
+            </p>
+
+            <p class="mb-1">
+              📅 <%= b.checkIn.toDateString() %> → <%= b.checkOut.toDateString() %>
+            </p>
+
+            <p class="fw-bold text-success mt-2">
+              💰 ₹<%= b.totalPrice.toLocaleString("en-IN") %>
+            </p>
+            <a href="/chat/<%= b.listing._id %>/<%= b.user._id %>"
+             class="btn btn-success">
+               Chat with User
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    <% }) %>
+
+  </div>
+
+</div>
