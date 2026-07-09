@@ -297,27 +297,38 @@
         <% } %>
 
         <% if(!currUser){ %>
+    Sign Up
+    Log In
 
-            <a href="/signup" class="nav-link">Sign Up</a>
+<% } else { %>
 
-            <a href="/login" class="nav-link">Log In</a>
+    <% if(currUser.role==="admin"){ %>
 
-        <% } else { %>
+        Admin Dashboard
 
-            <a href="/bookings/myBookings" class="nav-link">
-                📅 My Bookings
-            </a>
+    <% } else { %>
 
-            <a href="/my-host-status" class="nav-link">
-                🏡 Host Status
-            </a>
+        My Bookings
 
-            <a href="/logout" class="nav-link">
-                🚪 Logout
-            </a>
+        Host Status
+
+        <% if(currUser.role==="host"){ %>
+            Host Bookings
+        <% } %>
+
+        <% if(currUser.role==="user"){ %>
+
+            <% if(!request || request.status==="rejected"){ %>
+                Become Host
+            <% } %>
 
         <% } %>
 
+    <% } %>
+
+    Logout
+
+<% } %>
     </div>
 
 </div>
