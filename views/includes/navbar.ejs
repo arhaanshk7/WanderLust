@@ -290,43 +290,52 @@
 
         <a href="/listings" class="nav-link">🏠 All Listings</a>
 
-        <% if(request && request.status==="approved"){ %>
-            <a href="/listings/new" class="nav-link">
-                ➕ Create Listing
-            </a>
-        <% } %>
+<% if(request && request.status==="approved"){ %>
+    <a href="/listings/new" class="nav-link">➕ Create Listing</a>
+<% } %>
 
-        <% if(!currUser){ %>
-    Sign Up
-    Log In
+<% if(!currUser){ %>
+
+    <a href="/signup" class="nav-link">Sign Up</a>
+    <a href="/login" class="nav-link">Log In</a>
 
 <% } else { %>
 
     <% if(currUser.role==="admin"){ %>
 
-        Admin Dashboard
+        <a href="/admin/host-requests" class="nav-link">
+            🛠 Admin Dashboard
+        </a>
 
     <% } else { %>
 
-        My Bookings
+        <a href="/bookings/myBookings" class="nav-link">
+            📅 My Bookings
+        </a>
 
-        Host Status
+        <a href="/my-host-status" class="nav-link">
+            🏡 Host Status
+        </a>
 
         <% if(currUser.role==="host"){ %>
-            Host Bookings
+            <a href="/bookings/host/bookings" class="nav-link">
+                📖 Host Bookings
+            </a>
         <% } %>
 
         <% if(currUser.role==="user"){ %>
-
             <% if(!request || request.status==="rejected"){ %>
-                Become Host
+                <a href="/become-host" class="nav-link">
+                    ✨ Become Host
+                </a>
             <% } %>
-
         <% } %>
 
     <% } %>
 
-    Logout
+    <a href="/logout" class="nav-link">
+        🚪 Logout
+    </a>
 
 <% } %>
     </div>
