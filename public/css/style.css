@@ -721,8 +721,8 @@ footer {
 
     .listing-container{
         display:grid;
-        grid-template-columns:repeat(3,250px);
-        gap:2px;
+        grid-template-columns:repeat(3,170px);
+        gap:18px;
         width:max-content;
     }
 
