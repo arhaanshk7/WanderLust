@@ -652,13 +652,7 @@ footer {
     color: #dcdcdc !important;   /* Light Gray */
 }
 
-@media (max-width:770px){
-    .listing-container{
-        display:grid;
-        grid-template-columns: repeat(3,1fr);
-        gap:1.2rem;
-    }
-}
+
 @media (max-width:770px){
     .listing-img{
         height:180px;
@@ -717,4 +711,22 @@ footer {
     }
 
 }
+
+@media (max-width:768px){
+
+    .listing-scroll{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .listing-container{
+        display:grid;
+        grid-template-columns:repeat(3,250px);
+        gap:2px;
+        width:max-content;
+    }
+
+}
+
+
 

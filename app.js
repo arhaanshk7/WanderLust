@@ -176,6 +176,11 @@ const Message = require("./models/message");
 });
 
 
+app.get("/",(req,res)=>{
+    res.redirect("/listings");
+})
+
+
 
 
 
